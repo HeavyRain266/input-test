@@ -1,5 +1,3 @@
-// clang -o libinput-test input.c -pedantic -linput -ludev -lxkbcommon
-
 #include <poll.h>
 #include <fcntl.h>
 #include <stdio.h>
