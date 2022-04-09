@@ -1,5 +1,5 @@
 project('input-test', 'c',
-  version : '1.0',
+  version : '1.1',
   license : 'Unlicense',
   default_options : ['c_std=c99']
 )
@@ -9,20 +9,30 @@ add_project_arguments(
   language : 'c'
 )
 
-cc = meson.get_compiler('c')
-
-udev	  = dependency('libudev')
+udev      = dependency('libudev')
 libinput  = dependency('libinput')
 xkbcommon = dependency('xkbcommon')
 
+cc = meson.get_compiler('c')
+
 if cc.get_id() == ('clang')
-  extra_args = ['-static', '-pedantic', '-fuse-ld=mold']
+  extra_args = [
+    '-static',
+    '-pedantic',
+    '-fuse-ld=mold'
+  ]
 else
-  extra_args = ['-static', '-pedantic']
+  extra_args = [
+    '-static',
+    '-pedantic'
+  ]
 endif
 
 executable('input-test', 'src/main.c',
   c_args : extra_args,
-  dependencies: [udev, libinput, xkbcommon]
+  dependencies : [
+    udev,
+    libinput,
+    xkbcommon
+  ]
 )
-
